@@ -1,55 +1,16 @@
-# Rebutal test
+# Scaling up forecast horizon
 
+**(T_tr, T_te) = (24, 48) for ILI and (T_tr, T_te) = (48, 144) for others. Koopa and SKOLR conducts vanilla rolling forecast and Koopa OA has operator adaptation.**
 
-## Getting Started
-
-
-1. Install requirements. ```pip install -r requirements.txt```
-
-2. Download data. You can download all the datasets from [Autoformer](https://drive.google.com/drive/folders/1ZOYpTUa82_jCcxIdTmyr0LXQfvaM9vIy). Create a seperate folder ```./dataset``` and put all the csv files in the directory.
-
-### KoopMamba: LinearRNN is ensembled Koopman Operators
-
-1. Training. All the scripts are in the directory ```./scripts/```. you could start to train the basemodel: MLP - RNN - MLP, by running
-```
-sh ./scripts/ETT_script/Koopmamba.sh
-```
-
-### Different version of KoopMamba are in folder layers
-
-From KoopMamba.py to KoopMambev7.py, different versions are introduced at the begining of each document. 
-
-KoopMamba.py is the baseline : MlP - RNN -MLP.
-
-v4 is Inv+MLP which has the best results for now. 
-
-v2 is the only module with Channel Independent, which has the second best results.
-
-Too call different version, please change hyperparameter 
-```
---model [model name]
-```
-
-[model name] for each version please check KoopMamba/exp
-/exp_main.py line 66
-
-## Acknowledgement
-
-We appreciate the following github repo very much for the valuable code base and datasets:
-
-https://github.com/yuqinie98/PatchTST
-
-https://github.com/cure-lab/LTSF-Linear
-
-https://github.com/zhouhaoyi/Informer2020
-
-https://github.com/thuml/Autoformer
-
-https://github.com/MAZiqing/FEDformer
-
-https://github.com/alipay/Pyraformer
-
-https://github.com/ts-kim/RevIN
-
-https://github.com/timeseriesAI/tsai
-
+|                     | **ETTh2**           | **ETTh2**           | **ILI**             | **ILI**             | **ECL**             | **ECL**             | **Traffic**         | **Traffic**         | **Weather**         | **Weather**         |
+|---------------------|---------------------|---------------------|---------------------|---------------------|---------------------|---------------------|---------------------|---------------------|---------------------|---------------------|
+|                     | **(ADF -4.135)**    | **(ADF -4.135)**    | **(ADF -5.406)**    | **(ADF -5.406)**    | **(ADF -8.483)**    | **(ADF -8.483)**    | **(ADF -15.046)**   | **(ADF -15.046)**   | **(ADF -26.661)**   | **(ADF -26.661)**   |
+| **Metric**          | **MSE**             | **MAE**             | **MSE**             | **MAE**             | **MSE**             | **MAE**             | **MSE**             | **MAE**             | **MSE**             | **MAE**             |
+| <span style="color:gray">Koopa (H_tr)</span> | <span style="color:gray">0.226</span> | <span style="color:gray">0.300</span> | <span style="color:gray">1.621</span> | <span style="color:gray">0.800</span> | <span style="color:gray">0.130</span> | <span style="color:gray">0.234</span> | <span style="color:gray">0.415</span> | <span style="color:gray">0.274</span> | <span style="color:gray">0.126</span> | <span style="color:gray">0.168</span> |
+| **Koopa(H_te)**     | 0.437               | 0.429               | 2.836               | 1.065               | 0.199               | 0.298               | 0.709               | 0.437               | 0.237               | 0.276               |
+| **Error(+ %)**      | 93%                 | 43%                 | 75%                 | 33%                 | 53%                 | 27%                 | 71%                 | 59%                 | 88%                 | 64%                 |
+| **Koopa OA(H_te)**  | <span style="color:red">0.372</span> | 0.404               | 2.427               | <span style="color:red">0.907</span> | <span style="color:red">0.182</span> | <span style="color:red">0.271</span> | 0.699               | 0.426               | 0.225               | 0.264               |
+| **Error(+ %)**      | <span style="color:red">65%</span> | 35%                 | <span style="color:red">50%</span> | <span style="color:red">13%</span> | <span style="color:red">40%</span> | <span style="color:red">16%</span> | 68%                 | 55%                 | 79%                 | 57%                 |
+| <span style="color:gray">SKOLR (H_tr)</span> | <span style="color:gray">0.238</span> | <span style="color:gray">0.306</span> | <span style="color:gray">1.556</span> | <span style="color:gray">0.760</span> | <span style="color:gray">0.137</span> | <span style="color:gray">0.229</span> | <span style="color:gray">0.400</span> | <span style="color:gray">0.258</span> | <span style="color:gray">0.131</span> | <span style="color:gray">0.170</span> |
+| **SKOLR (H_te)**    | 0.393               | <span style="color:red">0.402</span> | 2.392               | 0.958               | 0.204               | 0.289               | <span style="color:red">0.612</span> | <span style="color:red">0.383</span> | <span style="color:red">0.222</span> | <span style="color:red">0.257</span> |
+| **Error(+ %)**      | <span style="color:red">65%</span> | <span style="color:red">31%</span> | 54%                 | 26%                 | 49%                 | 26%                 | <span style="color:red">53%</span> | <span style="color:red">48%</span> | <span style="color:red">69%</span> | <span style="color:red">51%</span> |
