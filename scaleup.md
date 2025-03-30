@@ -1,9 +1,11 @@
+<div align="center">
+
 # Scaling up forecast horizon
 
 **(T_tr, T_te) = (24, 48) for ILI and (T_tr, T_te) = (48, 144) for others. Koopa and SKOLR conducts vanilla rolling forecast and Koopa OA has operator adaptation.**
-<div align="center">
+
 |                     | **ETTh2**           | **ETTh2**           | **ILI**             | **ILI**             | **ECL**             | **ECL**             | **Traffic**         | **Traffic**         | **Weather**         | **Weather**         |
-|---------------------|---------------------|---------------------|---------------------|---------------------|---------------------|---------------------|---------------------|---------------------|---------------------|---------------------|
+|:-------------------:|:-------------------:|:-------------------:|:-------------------:|:-------------------:|:-------------------:|:-------------------:|:-------------------:|:-------------------:|:-------------------:|:-------------------:|
 |                     | **(ADF -4.135)**    | **(ADF -4.135)**    | **(ADF -5.406)**    | **(ADF -5.406)**    | **(ADF -8.483)**    | **(ADF -8.483)**    | **(ADF -15.046)**   | **(ADF -15.046)**   | **(ADF -26.661)**   | **(ADF -26.661)**   |
 | **Metric**          | **MSE**             | **MAE**             | **MSE**             | **MAE**             | **MSE**             | **MAE**             | **MSE**             | **MAE**             | **MSE**             | **MAE**             |
 | <span style="color:gray">Koopa (T_tr)</span> | <span style="color:gray">0.226</span> | <span style="color:gray">0.300</span> | <span style="color:gray">1.621</span> | <span style="color:gray">0.800</span> | <span style="color:gray">0.130</span> | <span style="color:gray">0.234</span> | <span style="color:gray">0.415</span> | <span style="color:gray">0.274</span> | <span style="color:gray">0.126</span> | <span style="color:gray">0.168</span> |
@@ -14,4 +16,5 @@
 | <span style="color:gray">SKOLR (T_tr)</span> | <span style="color:gray">0.238</span> | <span style="color:gray">0.306</span> | <span style="color:gray">1.556</span> | <span style="color:gray">0.760</span> | <span style="color:gray">0.137</span> | <span style="color:gray">0.229</span> | <span style="color:gray">0.400</span> | <span style="color:gray">0.258</span> | <span style="color:gray">0.131</span> | <span style="color:gray">0.170</span> |
 | **SKOLR (T_te)**    | 0.393               | <span style="color:red">0.402</span> | 2.392               | 0.958               | 0.204               | 0.289               | <span style="color:red">0.612</span> | <span style="color:red">0.383</span> | <span style="color:red">0.222</span> | <span style="color:red">0.257</span> |
 | **Error(+ %)**      | <span style="color:red">65%</span> | <span style="color:red">31%</span> | 54%                 | 26%                 | 49%                 | 26%                 | <span style="color:red">53%</span> | <span style="color:red">48%</span> | <span style="color:red">69%</span> | <span style="color:red">51%</span> |
-<div>
+
+</div>
